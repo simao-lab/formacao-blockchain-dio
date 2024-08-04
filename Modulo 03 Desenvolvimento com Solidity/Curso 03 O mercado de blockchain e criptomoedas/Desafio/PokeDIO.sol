@@ -16,7 +16,7 @@ contract PokeDIO is ERC721{
     Pokemon[] public pokemons;
     address public gameOwner;
 
-    constructor () ERC721 ("PokeDIO", "PKD"){
+    constructor () ERC721 ("Pokemon_DIO", "PKD"){  // modificação do nome para Pokemon_DIO
 
         gameOwner = msg.sender;
 
@@ -24,7 +24,7 @@ contract PokeDIO is ERC721{
 
     modifier onlyOwnerOf(uint _monsterId) {
 
-        require(ownerOf(_monsterId) == msg.sender,"Apenas o dono pode batalhar com este Pokemon");
+        require(ownerOf(_monsterId) == msg.sender,"Apenas o proprietário pode batalhar com este Pokemon"); // modificação no texto
         _;
 
     }
@@ -43,7 +43,7 @@ contract PokeDIO is ERC721{
     }
 
     function createNewPokemon(string memory _name, address _to, string memory _img) public {
-        require(msg.sender == gameOwner, "Apenas o dono do jogo pode criar novos Pokemons");
+        require(msg.sender == gameOwner, "Apenas o proprietário do jogo pode criar novos Pokemons"); // modificação no texto
         uint id = pokemons.length;
         pokemons.push(Pokemon(_name, 1,_img));
         _safeMint(_to, id);
